@@ -8,7 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-Message Body:<br/> 
+<h1>Insert Job Information</h1>
+<br/>
+Message Body:
+<br/> 
 <textarea style="font-size:14pt;" rows="20" cols="70" form="postJobForm" name="messageBody"></textarea>
 
 <form action = "/JobPortal/PostJob" method="POST" id="postJobForm">

@@ -9,5 +9,14 @@
 </head>
 <body>
 
+	<c:forEach items = "${jobs}" var="job">
+		<h3 style="display:inline; font-style:oblique; font-size:19px;">${job.jobName}</h3><br/>
+		${job.messageBody}<br/>
+		<i>${job.posterName}</i>
+		<small>${job.contactPhone}</small>
+		</br>
+		</br>
+	</c:forEach>
+	
 </body>
 </html>
