@@ -8,6 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>Remove Job</h1>
+<c:if test = "${error != null}">
+	<h1 style="color:red;"> There Was An Error</h1>
+	<br />
+	<br />
+</c:if>
+<form action = "/JobPortal/RemoveJob" method = "post">
+	Job ID: <input type = "text" name = "id">
+	Job Password: <input type = "text" name = "password">
+	<input type = "submit" value = "submit"/>
+</form>
 </body>
 </html>
