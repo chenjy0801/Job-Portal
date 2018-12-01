@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.eduonix.JobPortal.entity.JobPosting;
@@ -54,6 +55,7 @@ public class JobPostingDAO {
 
 			}
 			st.close();
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,12 +70,12 @@ public class JobPostingDAO {
 		String sep = "','";
 		try {
 			Statement st = conn.createStatement();
-			String sqlQuery = "insert into jobPostings(messageBody, jobName, posterName, contactPhone, jobPostingPassword values "
+			String sqlQuery = "insert into jobPostings(messageBody, jobName, posterName, contactPhone, jobPostingPassword) values ( '"
 								+ posting.getMessageBody()+sep 
 								+ posting.getJobName()+ sep 
 								+ posting.getPosterName()+sep
 								+ posting.getContactPhone()+sep 
-								+ posting.getJobPostingPassword()+")";
+								+ posting.getJobPostingPassword()+"')";
 			System.out.println(sqlQuery);
 			st.executeUpdate(sqlQuery);
 			st.close();
@@ -101,6 +103,41 @@ public class JobPostingDAO {
 	}
 
 	public List<JobPosting> getAllPostings() {
-		return null;
+		Statement st;
+		ResultSet rs;
+		List<JobPosting> jobs = new ArrayList<JobPosting>();
+		try {
+			st = conn.createStatement();
+		    rs = st.executeQuery("select * from jobPostings limit 200");
+			
+			while(rs.next()) {
+				JobPosting jobPostToAdd = new JobPosting();
+				jobPostToAdd.setContactPhone(rs.getString("contactPhone"));
+				jobPostToAdd.setJobName(rs.getString("jobName"));
+				jobPostToAdd.setPosterName(rs.getString("posterName"));
+				jobPostToAdd.setMessageBody(rs.getString("messageBody"));
+				jobPostToAdd.setId(rs.getInt("id"));
+				
+				jobs.add(jobPostToAdd);
+				
+			}
+			st.close();
+			rs.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return jobs;
+	}
+	
+	public void close() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

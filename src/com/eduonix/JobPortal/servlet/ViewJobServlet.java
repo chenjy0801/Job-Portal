@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class TestServlet
- */
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-    public TestServlet() {
+@WebServlet("/ViewJobServlet")
+public class ViewJobServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+    public ViewJobServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -24,7 +23,6 @@ public class TestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
